@@ -1,0 +1,1 @@
+serial.write_buffer(serial.read_buffer(0))
