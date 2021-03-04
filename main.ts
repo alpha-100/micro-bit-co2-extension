@@ -19,11 +19,15 @@ while (true) {
 while (true) {
     serial.writeBuffer(b);
     basic.pause(100);
-    let response_buffer = serial.readBuffer(0);
-    basic.showNumber(response_buffer.length);
     
-    let co2_ppm = response_buffer.getNumber(NumberFormat.UInt16BE, 3);
-    basic.showString("CO2: ");
-    basic.showNumber(co2_ppm);
-    basic.pause(5e3);
+    let response_buffer = serial.readBuffer(0);    
+    if (response_buffer.length == 5) {
+        let co2_ppm = response_buffer.getNumber(NumberFormat.UInt16BE, 3);
+        basic.showString("CO2: ");
+        basic.showNumber(co2_ppm);
+        basic.pause(5e3);
+    } else {
+        basic.showString("ERR!");
+        basic.pause(1e3);
+    }
 }
