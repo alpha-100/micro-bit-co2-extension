@@ -16,7 +16,11 @@ while (true) {
 }
 */
 
-serial.writeBuffer(b);
-let response_buffer = serial.readBuffer(5);
-let co2_ppm = response_buffer.getNumber(NumberFormat.UInt16BE, 3);
-basic.showString("CO2: ", co2_ppm);
+while (true) {
+    serial.writeBuffer(b);
+    let response_buffer = serial.readBuffer(5);
+    let co2_ppm = response_buffer.getNumber(NumberFormat.UInt16BE, 3);
+    basic.showString("CO2: ");
+    basic.showNumber(co2_ppm);
+    basic.pause(5e3);
+}
